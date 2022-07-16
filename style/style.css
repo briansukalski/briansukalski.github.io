@@ -1,6 +1,10 @@
 * {
     font-family: Helvetica, sans-serif;
-    background-color: lightgray;
+}
+
+header {
+    background-color: #171B31;
+    border: 1px solid black;
 }
 
 h1 {
@@ -8,7 +12,6 @@ h1 {
     font-size: 3rem;
     padding: 50px;
     color: gainsboro;
-    background-color: rgb(44, 5, 44);
 }
 
 h2 {
@@ -39,20 +42,29 @@ body li {
 
 footer {
     width: 100%;
-    background-color: rgb(44, 5, 44);
     margin-top: 50px;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
 }
 
 footer a {
     display: inline-block;
     text-align: center;
-    width: 30%;
+    flex-basis: 450px;
     color: gainsboro;
     background-color: inherit;
     font-size: 36px;
     text-decoration: none;
+}
+
+footer #songs {
+    background-color: #014723;
+}
+footer #linkedin {
+    background-color: #07054c;
+}
+footer #github {
+    background-color: #3e0505;
 }
 
 footer a:visited {
