@@ -72,5 +72,8 @@ footer a:visited {
 }
 
 .blog-post {
-    border: 1px solid black;
+    background-color: #171B31;
+    color: gainsboro;
+    padding: 10px;
+    margin: 10px;
 }
