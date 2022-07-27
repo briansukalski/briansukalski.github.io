@@ -55,16 +55,31 @@ footer a {
     background-color: inherit;
     font-size: 36px;
     text-decoration: none;
+    border-radius: 5px;
 }
 
 footer #songs {
     background-color: #014723;
 }
+footer #songs:hover {
+    background-color: #002312;
+    color: white;
+}
+
 footer #linkedin {
     background-color: #07054c;
 }
+footer #linkedin:hover {
+    background-color: #030224;
+    color: white;
+}
+
 footer #github {
     background-color: #3e0505;
+}
+footer #github:hover {
+    background-color: #190202;
+    color: white;
 }
 
 footer a:visited {
