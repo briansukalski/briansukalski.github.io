@@ -7,6 +7,10 @@ header {
     border: 1px solid black;
 }
 
+header img {
+    margin: auto 35%;
+}
+
 h1 {
     text-align: center;
     font-size: 3rem;
