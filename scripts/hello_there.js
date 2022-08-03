@@ -1,10 +1,9 @@
 function general_kenobi() {
     let image = document.getElementById('grievous');
-    if (image.src === 'style/hello-there-general-kenobi.gif') {
-        image.src = '';
+    if (image.style.visibility === 'hidden') {
+        image.style.visibility = 'visible';
     }
     else {
-        image.src = 'style/hello-there-general-kenobi.gif'
-
+        image.style.visibility = 'hidden';
     }
 }

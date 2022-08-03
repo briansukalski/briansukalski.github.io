@@ -9,6 +9,7 @@ header {
 
 header img {
     margin: auto 35%;
+    visibility: hidden;
 }
 
 h1 {
