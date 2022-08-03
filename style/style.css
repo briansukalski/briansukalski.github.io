@@ -8,7 +8,10 @@ header {
 }
 
 header img {
-    margin: auto 35%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
     visibility: hidden;
 }
 
@@ -17,6 +20,10 @@ h1 {
     font-size: 3rem;
     padding: 50px;
     color: gainsboro;
+}
+
+#trigger:hover {
+    cursor: pointer;
 }
 
 h2 {
