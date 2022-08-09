@@ -117,3 +117,32 @@ footer a:visited {
     padding: 10px;
     margin: 10px;
 }
+
+.keyboard {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.key {
+    font-size: 3rem;
+    border: 1px solid black;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    text-align: center;
+    height: 100%;
+}
+
+.key:hover {
+    cursor: pointer;
+}
+
+.white-key {
+    flex-basis: 200px;
+}
+
+.black-key {
+    background-color: black;
+    color: white;
+    flex-basis: 150px;
+}
