@@ -1,24 +1,11 @@
-let audio_dict = {};
+let id_list = ['c-natural-1', 'c-sharp', 'd-natural', 'd-sharp', 'e-natural', 'f-natural', 'f-sharp', 'g-natural', 'g-sharp', 'a-natural', 'a-sharp', 'b-natural', 'c-natural-2'];
 
-audio_dict['c-natural-1'] = 'c_1';
-audio_dict['c-sharp'] = 'c_sharp_1';
-audio_dict['d-natural'] = 'd_1';
-audio_dict['d-sharp'] = 'd_sharp_1';
-audio_dict['e-natural'] = 'e_1';
-audio_dict['f-natural'] = 'f_1';
-audio_dict['f-sharp'] = 'f_sharp_1';
-audio_dict['g-natural'] = 'g_1';
-audio_dict['g-sharp'] = 'g_sharp_1';
-audio_dict['a-natural'] = 'a_1';
-audio_dict['a-sharp'] = 'a_sharp_1';
-audio_dict['b-natural'] = 'b_1';
-audio_dict['c-natural-2'] = 'c_2';
 
 function play_note(event) {
-    let audio = new Audio(`../style/media/audio/keyboard_tones/${audio_dict[event.target.id]}.mp3`);
-    audio.play();
+    document.getElementById(`${event.target.id}-audio`).load();
+    document.getElementById(`${event.target.id}-audio`).play();
 }
 
-for (let el in audio_dict) {
+for (let el of id_list) {
     document.getElementById(el).addEventListener('mousedown', play_note);
 }
