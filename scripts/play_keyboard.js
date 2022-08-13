@@ -1,35 +1,62 @@
-const id_list = ['c-natural-1', 'c-sharp', 'd-natural', 'd-sharp', 'e-natural', 'f-natural', 'f-sharp', 'g-natural', 'g-sharp', 'a-natural', 'a-sharp', 'b-natural', 'c-natural-2'];
+const idList = ['c-natural-1', 'c-sharp', 'd-natural', 'd-sharp', 'e-natural', 'f-natural', 'f-sharp', 'g-natural', 'g-sharp', 'a-natural', 'a-sharp', 'b-natural', 'c-natural-2'];
 
-const key_list = ['a', 'w', 's', 'e', 'd', 'f', 't', 'g', 'y', 'h', 'u', 'j', 'k'];
+const keyList = ['a', 'w', 's', 'e', 'd', 'f', 't', 'g', 'y', 'h', 'u', 'j', 'k'];
 
-const key_dict = {}
+const keyDict = {}
 
+let highlightedKeyId;
 
-
-for (let i = 0; i < key_list.length; i++) {
-    key_dict[key_list[i]] = id_list[i] + '-audio';
+for (let i = 0; i < keyList.length; i++) {
+    keyDict[keyList[i]] = idList[i];
 }
 
-function play_note(id) {
-    document.getElementById(id).load();
-    document.getElementById(id).play();
+function playNote(id) {
+    let audioId = document.getElementById(id+'-audio');
+    audioId.load();
+    audioId.play();
 }
 
-function click_key(event) {
-    let id = `${event.target.id}-audio`;
-    play_note(id);
+function highlightKey(id) {
+    highlightedKeyId = id;
+    document.getElementById(id).style.backgroundColor = 'darkgreen';
+    document.getElementById(id).style.color = 'white';
 }
 
-function press_key(KeyBoardEvent) {
-    let id = key_dict[KeyBoardEvent.key];
+function resetStyle(id) {
+    document.getElementById(id).style.color = '';
+    document.getElementById(id).style.backgroundColor = '';
+}
+
+function clickReset() {
+    resetStyle(highlightedKeyId);
+}
+
+function keyReset(KeyBoardEvent) {
+    let id = keyDict[KeyBoardEvent.key]
+    if (id) {
+        resetStyle(id);
+    }
+}
+
+function clickKey(event) {
+    let id = `${event.target.id}`;
+    highlightKey(id);
+    playNote(id);
+}
+
+function pressKey(KeyBoardEvent) {
+    let id = keyDict[KeyBoardEvent.key];
     if (id){
-        play_note(id);
+        highlightKey(id);
+        playNote(id);
     }
     
 }
 
-for (let el of id_list) {
-    document.getElementById(el).addEventListener('mousedown', click_key);
-    document.addEventListener('keypress', press_key);
+for (let el of idList) {
+    document.getElementById(el).addEventListener('mousedown', clickKey);
+    document.addEventListener('keypress', pressKey);
+    document.addEventListener('mouseup', clickReset);
+    document.addEventListener('keyup', keyReset);
 }
 
