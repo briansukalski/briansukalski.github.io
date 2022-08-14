@@ -1,0 +1,19 @@
+{
+  "name": "briansukalski.github.io",
+  "version": "1.0.0",
+  "description": "My personal GitHub Pages site, used to practice my development skills and showcase my portfolio",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/briansukalski/briansukalski.github.io.git"
+  },
+  "author": "Brian Sukalski",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/briansukalski/briansukalski.github.io/issues"
+  },
+  "homepage": "https://github.com/briansukalski/briansukalski.github.io#readme"
+}
