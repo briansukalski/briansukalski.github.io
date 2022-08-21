@@ -126,12 +126,13 @@ footer a:visited {
 
 #black-keys {
     justify-content: space-around;
-    border: 1px solid red;
+    margin-top: 100px;
 }
 
 #white-keys {
     justify-content: center;
-    border: 1px solid red;
+    position: relative;
+    bottom: 600px;
 }
 
 .key {
@@ -148,7 +149,8 @@ footer a:visited {
 }
 
 .white-key {
-
+    z-index: 1;
+    background-color: white;
 }
 
 .black-key {
@@ -156,6 +158,7 @@ footer a:visited {
     color: white;
     height: 80%;
     width: 50px;
+    z-index: 2;
 }
 
 .flex-container {
