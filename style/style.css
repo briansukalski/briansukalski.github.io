@@ -151,6 +151,8 @@ footer a:visited {
 .white-key {
     z-index: 1;
     background-color: white;
+    box-sizing: border-box;
+    width: 12.5%;
 }
 
 .black-key {
@@ -159,6 +161,7 @@ footer a:visited {
     height: 80%;
     width: 50px;
     z-index: 2;
+    box-sizing: border-box;
 }
 
 .flex-container {
