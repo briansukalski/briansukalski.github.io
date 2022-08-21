@@ -118,12 +118,20 @@ footer a:visited {
     margin: 10px;
 }
 
-#keyboard {
+.keyboard {
     display: flex;
     flex-wrap: wrap;
     height: 600px;
-    border: 1px solid black;
+}
+
+#black-keys {
+    justify-content: space-around;
+    border: 1px solid red;
+}
+
+#white-keys {
     justify-content: center;
+    border: 1px solid red;
 }
 
 .key {
@@ -133,7 +141,6 @@ footer a:visited {
     padding: 0;
     display: inline-block;
     text-align: center;
-    flex-grow: 1;
 }
 
 .key:hover {
@@ -148,6 +155,7 @@ footer a:visited {
     background-color: black;
     color: white;
     height: 80%;
+    width: 50px;
 }
 
 .flex-container {
