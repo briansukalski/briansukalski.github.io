@@ -127,6 +127,8 @@ footer a:visited {
 #black-keys {
     justify-content: space-around;
     margin-top: 100px;
+    margin-left: 6.25%;
+    margin-right: 6.25%;
 }
 
 #white-keys {
@@ -159,9 +161,19 @@ footer a:visited {
     background-color: black;
     color: white;
     height: 80%;
-    width: 50px;
+    width: 7.25%;
     z-index: 2;
     box-sizing: border-box;
+}
+
+.ghost-key {
+    background-color: black;
+    color: white;
+    height: 80%;
+    width: 7.25%;
+    z-index: 2;
+    box-sizing: border-box;
+    visibility: hidden;   
 }
 
 .flex-container {
