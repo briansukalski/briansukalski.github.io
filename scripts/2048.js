@@ -4,9 +4,16 @@ let score = 0;
 document.getElementById('score').innerHTML = score;
 
 function pressKey() {
+    let newTileScore;
     let newLocation = Math.ceil(Math.random() * 16);
-    document.getElementById(gridDict[newLocation]).innerHTML = '2';
-    score += 2;
+    let randNum = Math.random();
+    if (randNum < .75) {
+        newTileScore = 2;
+    } else {
+        newTileScore = 4;
+    }
+    document.getElementById(gridDict[newLocation]).innerHTML = newTileScore;
+    score += newTileScore;
     document.getElementById('score').innerHTML = score;
 }
 
