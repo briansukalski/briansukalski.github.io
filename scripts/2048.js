@@ -17,4 +17,8 @@ function pressKey() {
     document.getElementById('score').innerHTML = score;
 }
 
-document.addEventListener('keypress', pressKey);
+function startGame() {
+    document.addEventListener('keypress', pressKey);
+}
+
+document.getElementById('start').addEventListener('click', startGame);
