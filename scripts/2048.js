@@ -29,6 +29,7 @@ function pressKey(KeyBoardEvent) {
 function startGame() {
     insertNewNumber();
     document.addEventListener('keypress', pressKey);
+    document.getElementById('start').removeEventListener('click', startGame);
 }
 
 document.getElementById('start').addEventListener('click', startGame);
