@@ -5,10 +5,8 @@ const acceptedInput = ['a', 'A', 's', 'S', 'd', 'D', 'w', 'W'];
 let score = 0;
 document.getElementById('score').innerHTML = score;
 
-function pressKey(KeyBoardEvent) {
-    let id = KeyBoardEvent.key;
-        if (acceptedInput.includes(id)) {
-            let newTileScore;
+function insertNewNumber() {
+    let newTileScore;
             let newLocation = Math.ceil(Math.random() * 16);
             let randNum = Math.random();
             if (randNum < .75) {
@@ -19,10 +17,17 @@ function pressKey(KeyBoardEvent) {
             document.getElementById(gridDict[newLocation]).innerHTML = newTileScore;
             score += newTileScore;
             document.getElementById('score').innerHTML = score;
+}
+
+function pressKey(KeyBoardEvent) {
+    let id = KeyBoardEvent.key;
+        if (acceptedInput.includes(id)) {
+            insertNewNumber();
         }
 }
 
 function startGame() {
+    insertNewNumber();
     document.addEventListener('keypress', pressKey);
 }
 
