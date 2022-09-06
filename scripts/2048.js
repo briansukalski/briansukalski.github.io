@@ -2,21 +2,24 @@ const gridArray = ['11', '12', '13', '14', '21', '22', '23', '24', '31', '32', '
 
 const acceptedInput = ['a', 'A', 's', 'S', 'd', 'D', 'w', 'W'];
 
+let blankSquares = [];
+
 let score = 0;
 document.getElementById('score').innerHTML = score;
 
 function insertNewNumber() {
     let newTileScore;
-    let newLocationIdx = Math.floor(Math.random() * 16);
+    let newLocationIdx = Math.floor(Math.random() * blankSquares.length);
     let randNum = Math.random();
     if (randNum < .75) {
         newTileScore = 2;
     } else {
         newTileScore = 4;
     }
-    document.getElementById(gridArray[newLocationIdx]).innerHTML = newTileScore;
+    document.getElementById(blankSquares[newLocationIdx]).innerHTML = newTileScore;
     score += newTileScore;
     document.getElementById('score').innerHTML = score;
+    blankSquares.splice(newLocationIdx, 1);
 }
 
 function pressKey(KeyBoardEvent) {
@@ -27,6 +30,7 @@ function pressKey(KeyBoardEvent) {
 }
 
 function startGame() {
+    blankSquares = gridArray.slice();
     insertNewNumber();
     document.addEventListener('keypress', pressKey);
     document.getElementById('start').removeEventListener('click', startGame);
