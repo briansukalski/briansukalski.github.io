@@ -20,6 +20,15 @@ function insertNewNumber() {
     score += newTileScore;
     document.getElementById('score').innerHTML = score;
     blankSquares.splice(newLocationIdx, 1);
+    if (blankSquares.length < 1) {
+        setTimeout(() => {
+            alert(`Game Over! You scored ${score} points.`);
+            document.removeEventListener('keypress', pressKey);
+            document.getElementById('start').addEventListener('click', startGame);
+            document.getElementById('start').innerHTML = 'Try Again';
+            document.getElementById('start').style.visibility = 'visible';
+        }, 500);
+    }
 }
 
 function pressKey(KeyBoardEvent) {
@@ -31,9 +40,12 @@ function pressKey(KeyBoardEvent) {
 
 function startGame() {
     blankSquares = gridArray.slice();
+    score = 0;
+    blankSquares.forEach(id => document.getElementById(id).innerHTML = '');
     insertNewNumber();
     document.addEventListener('keypress', pressKey);
     document.getElementById('start').removeEventListener('click', startGame);
+    document.getElementById('start').style.visibility = 'hidden';
 }
 
 document.getElementById('start').addEventListener('click', startGame);
