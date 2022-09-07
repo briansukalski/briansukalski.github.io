@@ -1,6 +1,8 @@
 const gridArray = ['11', '12', '13', '14', '21', '22', '23', '24', '31', '32', '33', '34', '41', '42', '43', '44'];
-const gridRows = [['11', '12', '13', '14'], ['21', '22', '23', '24'], ['31', '32', '33', '34'], ['41', '42', '43', '44']];
-const gridCols = [['11', '21', '31', '41'], ['12', '22', '32', '42'], ['13', '23', '33', '43'], ['14', '24', '34', '44']];
+const gridMoveRight = [['11', '12', '13', '14'], ['21', '22', '23', '24'], ['31', '32', '33', '34'], ['41', '42', '43', '44']];
+const gridMoveLeft = [['14', '13', '12', '11'], ['24', '23', '22', '21'], ['34', '33', '32', '31'], ['44', '43', '42', '41']];
+const gridMoveDown = [['11', '21', '31', '41'], ['12', '22', '32', '42'], ['13', '23', '33', '43'], ['14', '24', '34', '44']];
+const gridMoveUp = [['41', '31', '21', '11'], ['42', '32', '22', '12'], ['43', '33', '23', '13'], ['44', '34', '24', '14']];
 
 const acceptedInput = ['a', 'A', 's', 'S', 'd', 'D', 'w', 'W'];
 
@@ -9,44 +11,42 @@ let blankSquares = [];
 let score = 0;
 document.getElementById('score').innerHTML = score;
 
-function moveTiles(direction) {
-    if (direction === 'right') {
-        // Start by moving all numbers through blank tiles as far as they can go to the right before hitting another number
-        for (let el of gridRows) {
-            for (let i = 2; i >= 0; i--) {
-                let j = i + 1;
-                while (j < 4) {
-                    if (document.getElementById(el[j]).innerHTML === '') {
-                        j++;
-                    } else {
-                        break;
-                    }
-                }
-                j--;
-                if (j !== i) {
-                    document.getElementById(el[j]).innerHTML = document.getElementById(el[i]).innerHTML;
-                    document.getElementById(el[i]).innerHTML = '';
+function moveTiles(grid) {
+    // Start by moving all numbers through blank tiles as far as they can go to the right before hitting another number
+    for (let el of grid) {
+        for (let i = 2; i >= 0; i--) {
+            let j = i + 1;
+            while (j < 4) {
+                if (document.getElementById(el[j]).innerHTML === '') {
+                    j++;
+                } else {
+                    break;
                 }
             }
-        }
-        // Then, combine like numbers into larger numbers, keeping track of the score impact in the scoreToAdd variable
-        for (let el of gridRows) {
-            for (let i = 3; i > 0; i--) {
-                if (document.getElementById(el[i -1]).innerHTML === document.getElementById(el[i]).innerHTML && document.getElementById(el[i]).innerHTML !== '') {
-                    document.getElementById(el[i]).innerHTML *= 2;
-                    score += parseInt(document.getElementById(el[i]).innerHTML);
-                    document.getElementById(el[i - 1]).innerHTML = '';
-                    for (let j = i - 1; j >= 1; j--) {
-                        document.getElementById(el[j]).innerHTML = document.getElementById(el[j - 1]).innerHTML;
-                        document.getElementById(el[j - 1]).innerHTML = '';
-                    }
-                }
+            j--;
+            if (j !== i) {
+                document.getElementById(el[j]).innerHTML = document.getElementById(el[i]).innerHTML;
+                document.getElementById(el[i]).innerHTML = '';
             }
         }
-
-        blankSquares = gridArray.filter(id => document.getElementById(id).innerHTML === '');
-        console.log(blankSquares);
     }
+    // Then, combine like numbers into larger numbers, keeping track of the score impact in the scoreToAdd variable
+    for (let el of grid) {
+        for (let i = 3; i > 0; i--) {
+            if (document.getElementById(el[i -1]).innerHTML === document.getElementById(el[i]).innerHTML && document.getElementById(el[i]).innerHTML !== '') {
+                document.getElementById(el[i]).innerHTML *= 2;
+                score += parseInt(document.getElementById(el[i]).innerHTML);
+                document.getElementById(el[i - 1]).innerHTML = '';
+                for (let j = i - 1; j >= 1; j--) {
+                    document.getElementById(el[j]).innerHTML = document.getElementById(el[j - 1]).innerHTML;
+                    document.getElementById(el[j - 1]).innerHTML = '';
+                }
+            }
+        }
+    }
+
+    blankSquares = gridArray.filter(id => document.getElementById(id).innerHTML === '');
+    console.log(blankSquares);
 }
 
 function insertNewNumber() {
@@ -73,8 +73,22 @@ function insertNewNumber() {
 function pressKey(KeyBoardEvent) {
     let id = KeyBoardEvent.key;
         if (acceptedInput.includes(id)) {
-            moveTiles('right');
-            insertNewNumber();
+            if (id === 'd' || id === 'D') {
+                moveTiles(gridMoveRight);
+                insertNewNumber();
+            }
+            if (id === 'a' || id === 'A') {
+                moveTiles(gridMoveLeft);
+                insertNewNumber();
+            }
+            if (id === 's' || id === 'S') {
+                moveTiles(gridMoveDown);
+                insertNewNumber();
+            }
+            if (id === 'w' || id === 'W') {
+                moveTiles(gridMoveUp);
+                insertNewNumber();
+            }
         }
 }
 
