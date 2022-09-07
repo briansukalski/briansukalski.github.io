@@ -10,7 +10,20 @@ let score = 0;
 document.getElementById('score').innerHTML = score;
 
 function moveTiles(direction) {
-
+    if (direction === 'right') {
+        for (let el of gridRows) {
+            for (let i = 2; i >= 0; i--) {
+                for (let j = i + 1; j <= 3; j++){
+                    if (document.getElementById(el[j]).innerHTML === '') {
+                        document.getElementById(el[j]).innerHTML = document.getElementById(el[i]).innerHTML;
+                        document.getElementById(el[i]).innerHTML = '';
+                    }
+                }
+            }
+        }
+        blankSquares = gridArray.filter(id => document.getElementById(id).innerHTML === '');
+        console.log(blankSquares);
+    }
 }
 
 function insertNewNumber() {
@@ -26,6 +39,7 @@ function insertNewNumber() {
     score += newTileScore;
     document.getElementById('score').innerHTML = score;
     blankSquares.splice(newLocationIdx, 1);
+    console.log(blankSquares);
     if (blankSquares.length < 1) {
         setTimeout(() => {
             alert(`Game Over! You scored ${score} points.`);
@@ -37,6 +51,7 @@ function insertNewNumber() {
 function pressKey(KeyBoardEvent) {
     let id = KeyBoardEvent.key;
         if (acceptedInput.includes(id)) {
+            moveTiles('right');
             insertNewNumber();
         }
 }
