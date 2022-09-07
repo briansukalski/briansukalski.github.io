@@ -29,11 +29,12 @@ function moveTiles(direction) {
                 }
             }
         }
-        // Then, combine like numbers into larger numbers
+        // Then, combine like numbers into larger numbers, keeping track of the score impact in the scoreToAdd variable
         for (let el of gridRows) {
             for (let i = 3; i > 0; i--) {
                 if (document.getElementById(el[i -1]).innerHTML === document.getElementById(el[i]).innerHTML && document.getElementById(el[i]).innerHTML !== '') {
                     document.getElementById(el[i]).innerHTML *= 2;
+                    score += parseInt(document.getElementById(el[i]).innerHTML);
                     document.getElementById(el[i - 1]).innerHTML = '';
                     for (let j = i - 1; j >= 1; j--) {
                         document.getElementById(el[j]).innerHTML = document.getElementById(el[j - 1]).innerHTML;
@@ -58,7 +59,6 @@ function insertNewNumber() {
         newTileScore = 4;
     }
     document.getElementById(blankSquares[newLocationIdx]).innerHTML = newTileScore;
-    score += newTileScore;
     document.getElementById('score').innerHTML = score;
     blankSquares.splice(newLocationIdx, 1);
     console.log(blankSquares);
