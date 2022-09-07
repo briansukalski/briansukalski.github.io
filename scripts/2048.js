@@ -13,11 +13,18 @@ function moveTiles(direction) {
     if (direction === 'right') {
         for (let el of gridRows) {
             for (let i = 2; i >= 0; i--) {
-                for (let j = i + 1; j <= 3; j++){
+                let j = i + 1;
+                while (j < 4) {
                     if (document.getElementById(el[j]).innerHTML === '') {
-                        document.getElementById(el[j]).innerHTML = document.getElementById(el[i]).innerHTML;
-                        document.getElementById(el[i]).innerHTML = '';
+                        j++;
+                    } else {
+                        break;
                     }
+                }
+                j--;
+                if (j !== i) {
+                    document.getElementById(el[j]).innerHTML = document.getElementById(el[i]).innerHTML;
+                    document.getElementById(el[i]).innerHTML = '';
                 }
             }
         }
