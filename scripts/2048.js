@@ -9,6 +9,10 @@ let blankSquares = [];
 let score = 0;
 document.getElementById('score').innerHTML = score;
 
+function moveTiles(direction) {
+
+}
+
 function insertNewNumber() {
     let newTileScore;
     let newLocationIdx = Math.floor(Math.random() * blankSquares.length);
@@ -26,9 +30,6 @@ function insertNewNumber() {
         setTimeout(() => {
             alert(`Game Over! You scored ${score} points.`);
             document.removeEventListener('keypress', pressKey);
-            document.getElementById('start').addEventListener('click', startGame);
-            document.getElementById('start').innerHTML = 'Try Again';
-            document.getElementById('start').style.visibility = 'visible';
         }, 500);
     }
 }
@@ -46,8 +47,7 @@ function startGame() {
     blankSquares.forEach(id => document.getElementById(id).innerHTML = '');
     insertNewNumber();
     document.addEventListener('keypress', pressKey);
-    document.getElementById('start').removeEventListener('click', startGame);
-    document.getElementById('start').style.visibility = 'hidden';
+    document.getElementById('start').innerHTML = 'Start Over';
 }
 
 document.getElementById('start').addEventListener('click', startGame);
