@@ -11,6 +11,7 @@ document.getElementById('score').innerHTML = score;
 
 function moveTiles(direction) {
     if (direction === 'right') {
+        // Start by moving all numbers through blank tiles as far as they can go to the right before hitting another number
         for (let el of gridRows) {
             for (let i = 2; i >= 0; i--) {
                 let j = i + 1;
@@ -28,6 +29,20 @@ function moveTiles(direction) {
                 }
             }
         }
+        // Then, combine like numbers into larger numbers
+        for (let el of gridRows) {
+            for (let i = 3; i > 0; i--) {
+                if (document.getElementById(el[i -1]).innerHTML === document.getElementById(el[i]).innerHTML && document.getElementById(el[i]).innerHTML !== '') {
+                    document.getElementById(el[i]).innerHTML *= 2;
+                    document.getElementById(el[i - 1]).innerHTML = '';
+                    for (let j = i - 1; j >= 1; j--) {
+                        document.getElementById(el[j]).innerHTML = document.getElementById(el[j - 1]).innerHTML;
+                        document.getElementById(el[j - 1]).innerHTML = '';
+                    }
+                }
+            }
+        }
+
         blankSquares = gridArray.filter(id => document.getElementById(id).innerHTML === '');
         console.log(blankSquares);
     }
