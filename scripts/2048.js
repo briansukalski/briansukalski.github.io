@@ -75,20 +75,17 @@ function pressKey(KeyBoardEvent) {
         if (acceptedInput.includes(id)) {
             if (id === 'd' || id === 'D') {
                 moveTiles(gridMoveRight);
-                insertNewNumber();
             }
             if (id === 'a' || id === 'A') {
                 moveTiles(gridMoveLeft);
-                insertNewNumber();
             }
             if (id === 's' || id === 'S') {
                 moveTiles(gridMoveDown);
-                insertNewNumber();
             }
             if (id === 'w' || id === 'W') {
                 moveTiles(gridMoveUp);
-                insertNewNumber();
             }
+            insertNewNumber();
         }
 }
 
