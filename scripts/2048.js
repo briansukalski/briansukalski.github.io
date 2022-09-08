@@ -4,7 +4,7 @@ const gridMoveLeft = [['14', '13', '12', '11'], ['24', '23', '22', '21'], ['34',
 const gridMoveDown = [['11', '21', '31', '41'], ['12', '22', '32', '42'], ['13', '23', '33', '43'], ['14', '24', '34', '44']];
 const gridMoveUp = [['41', '31', '21', '11'], ['42', '32', '22', '12'], ['43', '33', '23', '13'], ['44', '34', '24', '14']];
 
-const valueColors = {'': 'E0E0E0', 2: 'FFCCCC', 4: 'FFCC99', 8: 'FF9933', 16: 'FF8000', 32: 'FF6666', 64: 'CC0000'};
+const valueColors = {'': '#E0E0E0', 2: '#FFCCCC', 4: '#FFCC99', 8: '#FF9933', 16: '#FF8000', 32: '#FF6666', 64: '#CC0000'};
 const acceptedInput = ['a', 'A', 's', 'S', 'd', 'D', 'w', 'W'];
 
 let blankSquares = [];
@@ -64,10 +64,8 @@ function insertNewNumber() {
     blankSquares.splice(newLocationIdx, 1);
     console.log(blankSquares);
     if (blankSquares.length < 1) {
-        setTimeout(() => {
-            alert(`Game Over! You scored ${score} points.`);
-            document.removeEventListener('keypress', pressKey);
-        }, 500);
+        alert(`Game Over! You scored ${score} points.`);
+        document.removeEventListener('keypress', pressKey);
     }
 }
 
@@ -87,7 +85,16 @@ function pressKey(KeyBoardEvent) {
                 moveTiles(gridMoveUp);
             }
             insertNewNumber();
+            colorGrid();
         }
+}
+
+function colorGrid() {
+    for (let id of gridArray) {
+        console.log(document.getElementById(id).innerHTML)
+        console.log(valueColors[document.getElementById(id).innerHTML])
+        document.getElementById(id).style.backgroundColor = valueColors[document.getElementById(id).innerHTML];
+    }
 }
 
 function startGame() {
@@ -95,6 +102,7 @@ function startGame() {
     score = 0;
     blankSquares.forEach(id => document.getElementById(id).innerHTML = '');
     insertNewNumber();
+    colorGrid();
     document.addEventListener('keypress', pressKey);
     document.getElementById('start').innerHTML = 'Start Over';
 }
