@@ -91,9 +91,11 @@ function pressKey(KeyBoardEvent) {
 
 function colorGrid() {
     for (let id of gridArray) {
-        console.log(document.getElementById(id).innerHTML)
-        console.log(valueColors[document.getElementById(id).innerHTML])
-        document.getElementById(id).style.backgroundColor = valueColors[document.getElementById(id).innerHTML];
+        if (document.getElementById(id).innerHTML in valueColors) {
+            document.getElementById(id).style.backgroundColor = valueColors[document.getElementById(id).innerHTML];
+        } else {
+            document.getElementById(id).style.backgroundColor = '#CCCC00';
+        }
     }
 }
 
