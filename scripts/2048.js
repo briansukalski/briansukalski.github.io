@@ -14,6 +14,7 @@ document.getElementById('score').innerHTML = score;
 
 function moveTiles(grid) {
     // Start by moving all numbers through blank tiles as far as they can go to the right before hitting another number
+    let moved = false;
     for (let el of grid) {
         for (let i = 2; i >= 0; i--) {
             let j = i + 1;
@@ -25,9 +26,10 @@ function moveTiles(grid) {
                 }
             }
             j--;
-            if (j !== i) {
+            if (j !== i && document.getElementById(el[i]).innerHTML !== '') {
                 document.getElementById(el[j]).innerHTML = document.getElementById(el[i]).innerHTML;
                 document.getElementById(el[i]).innerHTML = '';
+                moved = true;
             }
         }
     }
@@ -38,6 +40,7 @@ function moveTiles(grid) {
                 document.getElementById(el[i]).innerHTML *= 2;
                 score += parseInt(document.getElementById(el[i]).innerHTML);
                 document.getElementById(el[i - 1]).innerHTML = '';
+                moved = true;
                 for (let j = i - 1; j >= 1; j--) {
                     document.getElementById(el[j]).innerHTML = document.getElementById(el[j - 1]).innerHTML;
                     document.getElementById(el[j - 1]).innerHTML = '';
@@ -47,7 +50,7 @@ function moveTiles(grid) {
     }
 
     blankSquares = gridArray.filter(id => document.getElementById(id).innerHTML === '');
-    console.log(blankSquares);
+    return moved;
 }
 
 function insertNewNumber() {
@@ -71,21 +74,24 @@ function insertNewNumber() {
 
 function pressKey(KeyBoardEvent) {
     let id = KeyBoardEvent.key;
+    let moved;
         if (acceptedInput.includes(id)) {
             if (id === 'd' || id === 'D') {
-                moveTiles(gridMoveRight);
+                moved = moveTiles(gridMoveRight);
             }
             if (id === 'a' || id === 'A') {
-                moveTiles(gridMoveLeft);
+                moved = moveTiles(gridMoveLeft);
             }
             if (id === 's' || id === 'S') {
-                moveTiles(gridMoveDown);
+                moved = moveTiles(gridMoveDown);
             }
             if (id === 'w' || id === 'W') {
-                moveTiles(gridMoveUp);
+                moved = moveTiles(gridMoveUp);
             }
-            insertNewNumber();
-            colorGrid();
+            if (moved === true) {
+                insertNewNumber();
+                colorGrid();
+            }
         }
 }
 
