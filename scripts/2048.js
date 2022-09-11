@@ -66,10 +66,34 @@ function insertNewNumber() {
     document.getElementById('score').innerHTML = score;
     blankSquares.splice(newLocationIdx, 1);
     console.log(blankSquares);
-    if (blankSquares.length < 1) {
-        alert(`Game Over! You scored ${score} points.`);
-        document.removeEventListener('keypress', pressKey);
+}
+
+function checkGameStatus() {
+    let continueGame = false;
+    for (let i = 0; i < 4; i++) {
+        for (let j = 0; j < 4; j++) {
+            //Check for any blanks or any adjacent grid cells with the same value
+            if (document.getElementById(gridMoveRight[i][j]).innerHTML === '') {
+                continueGame = true;
+                return continueGame;
+            }
+            //Compare grid element to next element in same column
+            if (i < 3) {
+                if (document.getElementById(gridMoveRight[i][j]).innerHTML === document.getElementById(gridMoveRight[i + 1][j]).innerHTML) {
+                    continueGame = true;
+                    return continueGame;
+                }
+            }
+            //Compare grid element to next element in same row
+            if (j < 3) {
+                if (document.getElementById(gridMoveRight[i][j]).innerHTML === document.getElementById(gridMoveRight[i][j + 1]).innerHTML) {
+                    continueGame = true;
+                    return continueGame;
+                }
+            }
+        }
     }
+    return continueGame;
 }
 
 function pressKey(KeyBoardEvent) {
@@ -91,6 +115,10 @@ function pressKey(KeyBoardEvent) {
             if (moved === true) {
                 insertNewNumber();
                 colorGrid();
+                if (checkGameStatus() === false) {
+                    alert(`Game Over! You scored ${score} points.`);
+                    document.removeEventListener('keypress', pressKey);
+                }
             }
         }
 }
