@@ -116,8 +116,10 @@ function pressKey(KeyBoardEvent) {
                 insertNewNumber();
                 colorGrid();
                 if (checkGameStatus() === false) {
-                    alert(`Game Over! You scored ${score} points.`);
-                    document.removeEventListener('keypress', pressKey);
+                    setTimeout(() => {
+                        alert(`Game Over! You scored ${score} points.`);
+                        document.removeEventListener('keypress', pressKey);
+                    }, 0);
                 }
             }
         }
