@@ -207,3 +207,8 @@ button {
     font-size: 3rem;
     display: block;
 }
+
+#picture {
+    height: 500px;
+    margin: auto;
+}
